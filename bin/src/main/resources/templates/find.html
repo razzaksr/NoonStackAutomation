@@ -2,9 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Zealous Buddy</title>
+<title>Searching Candidates</title>
 <link rel = "icon" href ="images/zealous.png" type = "image/png">
 <!-- CSS only -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -12,7 +10,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="images/extra.css">
 </head>
 <body>
 <div class="container-fluid">
@@ -42,8 +39,47 @@
 			</div>
 		</div>
 	</nav>
-	<h1 class="text-success display-4">Welcome User... [[${#httpServletRequest.remoteUser}]]</h1>
-	<h2 th:text="${msg}" class="text-danger"></h2>
+	<h1 class="text-primary display-4">Welcome User... [[${#httpServletRequest.remoteUser}]]</h1>
+	<div class="row justify-content-center">
+		<div class="col-6">
+			<h1 class="text-primary text-center mt-5">Finding candidate</h1>
+			<form class="form text-dark p-3 shadow-lg rounded border border-light" action="#" th:action="@{'/finding'}" method="post">
+				<div class="form group">
+					<label for="name">Mention the name</label>
+					<input type="text" placeholder="Name of the student" class="form-control" name="name">
+				</div>
+				<hr class="my-4">
+				<p class="text-secondary text-center display-7">OR</p>
+				<div class="form group row">
+					<div class="form-inline col">
+						<label for="course">Select Course</label>
+						<select class="form-control" name="course">
+							<option>Select Any Course</option>
+							<option>Java</option>
+							<option>Spring</option>
+							<option>Full stack</option>
+							<option>Python</option>
+							<option>Selenium</option>
+							<option>Dotnet</option>
+							<option>PHP</option>
+						</select>
+					</div>
+				</div>
+				<p class="text-secondary text-center display-7">OR</p>
+				<div class="form group row">
+					<div class="form-inline col">
+						<label for="certificate">Certificate Status</label>
+						<input type="radio" name="certificate" value="true" class="ml-5">Issued
+						<input type="radio" name="certificate" value="false" class="ml-5">Not Issued
+					</div>
+				</div>
+				<div class="my-4 row justify-content-around">
+					<input type="submit" value="Find" class="btn btn-primary">
+					<input type="reset" value="Clean" class="btn btn-dark" style="margin-left:300px;">
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
 </body>
 </html>

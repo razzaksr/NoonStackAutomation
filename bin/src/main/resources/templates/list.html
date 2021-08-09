@@ -3,9 +3,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Zealous Buddy</title>
 <link rel = "icon" href ="images/zealous.png" type = "image/png">
+<title>Zealous Buddy Listing</title>
 <!-- CSS only -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <!-- JS, Popper.js, and jQuery -->
@@ -42,8 +41,49 @@
 			</div>
 		</div>
 	</nav>
-	<h1 class="text-success display-4">Welcome User... [[${#httpServletRequest.remoteUser}]]</h1>
-	<h2 th:text="${msg}" class="text-danger"></h2>
+	
+	<h1 class="text-primary display-4">Welcome User... [[${#httpServletRequest.remoteUser}]]</h1>
+	
+	<h1 class="text-center text-primary">All Candidate's info</h1>
+	<p class="text-center text-warning" th:text="${msg}"></p>
+	<div class="row justify-content-center">
+		<table class="table table-responsive table-stripped shadow rounded border col-md-12 col-lg-12 p-3">
+			<thead class="thead-dark">
+				<tr>
+					<th>S.No</th><th>Name</th><th>Contact</th><th>Address</th><th>Email</th><th>Org</th>
+					<th>Skill set</th><th>Fee</th><th>Date of joining</th><th>First Paid</th>
+					<th>Date of first paid</th><th>Date to be paid</th><th>Dues</th>
+					<th>Date of Completion</th><th>Certificate status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="one:${all}">
+					<td>
+						<a href="#" th:href="@{'/delete/'+${one.number}}">
+							<p th:text="${one.number}"></p>
+						</a>
+					</td>
+					<td th:text="${one.name}"></td>
+					<td th:text="${one.mobile}"></td><td th:text="${one.address}"></td>
+					<td th:text="${one.email}"></td><td th:text="${one.org}"></td>
+					<td th:text="${one.course}"></td><td th:text="${one.fee}"></td>
+					<td th:text="${one.joined}"></td><td th:text="${one.first}"></td>
+					<td th:text="${one.paid}"></td><td th:text="${one.payable}"></td>
+					<td th:text="${one.dues}"></td>
+					<td> 
+						<a href="#" th:href="@{'/generate/'+${one.number}}">
+							<p th:text="${one.completed}"></p>
+						</a>
+					</td>
+					<td>
+						<a href="#" th:href="@{'/edit/'+${one.number}}">
+							<p th:text="${one.certificate}"></p>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
 </body>
 </html>
